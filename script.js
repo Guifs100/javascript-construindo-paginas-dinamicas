@@ -1,5 +1,5 @@
 const inputItem = document.getElementById('input-item');
-const listaCompras = document.getElementById('lista-de-compras');
+const listaDeCompras = document.getElementById('lista-de-compras');
 // let text = document.querySelector('#titulo-lista');
 // text.innerHTML = 'Lista de compras atualizada';
 
@@ -34,13 +34,13 @@ botaoAdicionar.addEventListener('click', (event) => {
       nameItem.style.textDecoration = 'none';
       nameItem.style.color = 'black';
     }
-  }
+  });
 
   containerItemList.appendChild(inputCheckbox);
   containerItemList.appendChild(nameItem);
   itemList.appendChild(containerItemList);
-  document.getElementById('lista').appendChild(itemList);
-  //listaCompras.appendChild(itemList);
+  document.getElementById('lista-de-compras').appendChild(itemList);
+  //listaDeCompras.appendChild(itemList);
 
   const diaDaSemana = new Date().toLocaleDateString('pt-BR', {weekday: 'long'});
   const data = new Date().toLocaleDateString('pt-BR');
@@ -53,5 +53,19 @@ botaoAdicionar.addEventListener('click', (event) => {
 
   itemList.appendChild(itemData);
 
-  listaCompras.appendChild(itemList);
+  listaDeCompras.appendChild(itemList);
+  verificarListaVazia();
 });
+
+const mensagemListaVazia = document.querySelector('.mensagem-lista-vazia');
+
+function verificarListaVazia() {
+  const itensDaLista = listaDeCompras.querySelectorAll('li');
+  if (itensDaLista.length === 0) {
+    mensagemListaVazia.style.display = 'block';
+  } else {
+    mensagemListaVazia.style.display = 'none';
+  }
+}
+
+verificarListaVazia();
