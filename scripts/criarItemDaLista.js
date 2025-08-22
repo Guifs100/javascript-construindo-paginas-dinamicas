@@ -1,22 +1,22 @@
+import gerarDiaDaSemana from './geratDiaDaSemana.js';
+
 const inputItem = document.getElementById('input-item');
+let contador = 0;
 
 export function criarItemDaLista(textoDoItem) {
-  const listaDeCompras = document.getElementById('lista-de-compras');
-
-      // console.log(event.target);
-  event.preventDefault(); // Previne o comportamento padrão do botão
-  console.log(inputItem.value);
+  // console.log(event.target);
+  // console.log(inputItem.value);
   if (inputItem.value === '') {
     alert('Por favor, insira um item.');
     return;
   }
 
-  const itemList = document.createElement('li');
-  const containerItemList = document.createElement('div');
-  containerItemList.classList.add('lista-item-container');
+  const itemDaLista = document.createElement('li');
+  const containeritemDaLista = document.createElement('div');
+  containeritemDaLista.classList.add('lista-item-container');
   const inputCheckbox = document.createElement('input');
   inputCheckbox.type = 'checkbox';
-  inputCheckbox.id = `item-${count++}`;
+  inputCheckbox.id = `item-${contador++}`;
   const nameItem = document.createElement('p');
   nameItem.innerText = inputItem.value;
 
@@ -30,24 +30,17 @@ export function criarItemDaLista(textoDoItem) {
     }
   });
 
-  containerItemList.appendChild(inputCheckbox);
-  containerItemList.appendChild(nameItem);
-  itemList.appendChild(containerItemList);
-  document.getElementById('lista-de-compras').appendChild(itemList);
-  //listaDeCompras.appendChild(itemList);
+  containeritemDaLista.appendChild(inputCheckbox);
+  containeritemDaLista.appendChild(nameItem);
 
-  const diaDaSemana = new Date().toLocaleDateString('pt-BR', {weekday: 'long'});
-  const data = new Date().toLocaleDateString('pt-BR');
-  const hora = new Date().toLocaleTimeString('pt-BR', {hour: 'numeric', minute: 'numeric'});
+  itemDaLista.appendChild(containeritemDaLista);
+  const dataCompleta = gerarDiaDaSemana();
 
-  const dataCompleta = `${diaDaSemana} (${data}) ás ${hora}`;
   const itemData = document.createElement('p');
   itemData.classList.add('data-item');
   itemData.innerHTML = dataCompleta;
 
-  itemList.appendChild(itemData);
-
-  listaDeCompras.appendChild(itemList);
+  itemDaLista.appendChild(itemData);
 
   return itemDaLista;
 }
